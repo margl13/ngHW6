@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <fieldset>
+    <legend>SignUp</legend>
+  <div>
+    Login
+    <input type="password"
+           formControlName="login"
+           id="inputLogin"
+           placeholder="Login">
+    <div *ngIf="form.controls.login.value.length < 5 && login.touched">Login is too short</div>
+    <div *ngIf="form.controls.login.value.length > 10 && login.touched">Login is too long</div>
+
+  </div>
+  <div>
+    Password
+    <input type="text"
+           formControlName="password"
+           id="inputPassword"
+           placeholder="Password">
+  </div>
+  <div>
+    Confirm Password
+    <input type="text"
+           formControlName="confirmPassword"
+           id="confirmPassword"
+           placeholder="Password">
+  </div>
+    <div *ngIf="form.hasError('passwordError') && form.controls.confirmPassword.touched">Password not match</div>
+  <div >
+    <input type="checkbox">
+    Confirm
+  </div>
+  <button (click)="save(form)" [disabled]="form.invalid || form.hasError('passwordError')">save</button>
+  </fieldset>
+</form>
+
